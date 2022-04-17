@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const redis = require("redis");
-require("dotenv").config();
+// require("dotenv").config();
 
 // get sharejs dependencies
 const sharejs = require("share").server;
@@ -35,9 +35,9 @@ app.get("/", function (req, res) {
 
 // Using Free tier db from redis lab
 const client = redis.createClient({
-  host: process.env.REDIS_HOSTNAME,
-  port: process.env.REDIS_PORT,
-  password: process.env.REDIS_PASSWORD,
+  host: process.env.REDIS_HOSTNAME || "redis-19691.c264.ap-south-1-1.ec2.cloud.redislabs.com",
+  port: process.env.REDIS_PORT || 19691,
+  password: process.env.REDIS_PASSWORD || sTIn8ByDILpohFkrniECN6BaUAnNIXFf,
 });
 
 client.on("connect", () => {
