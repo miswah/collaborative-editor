@@ -3,13 +3,33 @@ window.onload = function () {
   const pad = document.getElementById("pad");
   const markdownArea = document.getElementById("markdown");
 
+  let previousMarkdownValue;
+
   const convertTextAreaToMarkdown = function () {
-    const markdownText = pad.value;
+    let markdownText = pad.value;
+    previousMarkdownValue = markdownText;
     html = converter.makeHtml(markdownText);
     markdownArea.innerHTML = html;
   };
 
+  const didChangeOccur = function () {
+    if (previousMarkdownValue != pad.value) {
+      return true;
+    }
+    return false;
+  };
+
+  setInterval(function () {
+    if (didChangeOccur()) {
+      convertTextAreaToMarkdown();
+    }
+  }, 1000);
+
   pad.addEventListener("input", convertTextAreaToMarkdown);
 
-  convertTextAreaToMarkdown();
+  // convertTextAreaToMarkdown();
+
+  sharejs.open("home", "text", function (error, doc) {
+    doc.attach_textarea(pad);
+  });
 };
