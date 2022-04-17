@@ -35,9 +35,9 @@ app.get("/", function (req, res) {
 
 // Using Free tier db from redis lab
 const client = redis.createClient({
-  host: process.env.REDIS_HOSTNAME || "redis-19691.c264.ap-south-1-1.ec2.cloud.redislabs.com",
-  port: process.env.REDIS_PORT || 19691,
-  password: process.env.REDIS_PASSWORD || sTIn8ByDILpohFkrniECN6BaUAnNIXFf,
+  host: "redis-19691.c264.ap-south-1-1.ec2.cloud.redislabs.com",
+  port: 19691,
+  password: sTIn8ByDILpohFkrniECN6BaUAnNIXFf,
 });
 
 client.on("connect", () => {
